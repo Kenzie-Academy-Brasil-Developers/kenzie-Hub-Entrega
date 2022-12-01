@@ -1,6 +1,28 @@
 import React from "react";
-import styles from "./styles";
+import { Article, ContArticle, H2, H3, H4, Headers, Main } from "./styles";
+import Logo from "../../assets/Logo.png";
 
 export const Dashboard = () => {
-  return <div>dashboard</div>;
+  return (
+    <Main>
+      <Headers>
+        <img src={Logo} alt="Logo" />
+        <a>Sair</a>
+      </Headers>
+      <div>
+        <Article>
+          <H2>Olá, Samuel Leão</H2>
+          <span>Primeiro módulo (Introdução ao Frontend)</span>
+        </Article>
+      </div>
+      <br />
+      <br />
+      <ContArticle>
+        <H3>Que pena! Estamos em desenvolvimento :( </H3>
+        <H4>
+          Nossa aplicação está em desenvolvimento, em breve teremos novidades
+        </H4>
+      </ContArticle>
+    </Main>
+  );
 };
