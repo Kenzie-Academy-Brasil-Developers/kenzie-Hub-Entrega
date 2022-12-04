@@ -50,7 +50,7 @@ export const Headers = styled.header`
   margin-bottom: 31px;
 `;
 
-export const BtnRegister = styled.button`
+export const BtnRegister = styled.a`
   height: 38px;
   width: 100%;
   border-radius: 4px;
@@ -59,4 +59,5 @@ export const BtnRegister = styled.button`
   border: solid 1px var(--Grey-1);
   color: var(--Grey-0);
   cursor: pointer;
+  text-decoration: none;
 `;

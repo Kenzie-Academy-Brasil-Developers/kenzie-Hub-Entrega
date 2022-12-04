@@ -1,6 +1,9 @@
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -28,6 +31,9 @@ export default createGlobalStyle`
 
     /* Font */
     --Inter: 'Inter', sans-serif ;
+
+    margin: 0 auto;
+    background-color: var(--Grey-4);
 }
 
 body {
@@ -42,5 +48,9 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+a{
+  text-decoration:none;
 }
 `;
