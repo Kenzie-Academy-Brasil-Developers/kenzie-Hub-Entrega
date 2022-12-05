@@ -27,7 +27,7 @@ export const Main = styled.main`
       background-color: var(--Grey-2);
       border: solid 1px var(--Grey-2);
       margin-bottom: 20px;
-      color: var(--Grey-1);
+      color: var(--Grey-0);
     }
 
     label {

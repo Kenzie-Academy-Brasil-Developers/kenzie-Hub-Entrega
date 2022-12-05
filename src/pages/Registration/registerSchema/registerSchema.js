@@ -17,7 +17,7 @@ export const registerSchema = yup.object().shape({
     .string()
     .required("o nome e obrigatorio")
     .min(3, "E necessario pelo menos 3 caracteres"),
-  bio: yup.string().required("fale um pouco de voce"),
+  bio: yup.string().required("campo obrigatorio"),
   contact: yup.string().required("o contato e obrigatorio"),
   course_module: yup.string().required("Este campo e obrigatorio"),
 });

@@ -3,10 +3,10 @@ import { H1, Headers, Main, Span } from "./styles";
 import Logo from "../../assets/Logo.png";
 import { Inputs } from "../../components/Input";
 import { Button } from "../../components/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { registerSchema } from "./registerSchema";
+import { registerSchema } from "./registerSchema/registerSchema";
 import { api } from "../../services/api";
 import { toast } from "react-toastify";
 import { useState } from "react";
@@ -31,13 +31,17 @@ export const Registration = () => {
   });
 
   const [Disabled, setDisabled] = useState(false);
+  const navigate = useNavigate();
 
   const userRegister = async (formData) => {
     try {
-      const response = await api.post("/users", formData);
-      toast.success("Cadastro realizado com sucesso");
-      console.log(response);
       setDisabled(true);
+      await api.post("/users", formData);
+      toast.success("Cadastro realizado com sucesso");
+
+      setTimeout(() => {
+        navigate("/");
+      }, 4000);
     } catch (error) {
       toast.error("Email ja existente");
     } finally {
@@ -47,7 +51,6 @@ export const Registration = () => {
 
   const submit = async (data) => {
     await userRegister(data);
-    console.log(data);
     reset();
   };
 

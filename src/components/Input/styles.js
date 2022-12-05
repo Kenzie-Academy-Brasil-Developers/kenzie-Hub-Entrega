@@ -8,6 +8,7 @@ export const Input = styled.input`
   background-color: var(--Grey-2);
   border: solid 1px var(--Grey-2);
   margin-bottom: 20px;
+  color: var(--Grey-0);
 `;
 
 export const Label = styled.label`

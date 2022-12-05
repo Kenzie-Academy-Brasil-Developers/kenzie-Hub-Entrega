@@ -20,6 +20,28 @@ export const Main = styled.main`
     background-color: var(--Grey-3);
     border-radius: 3px;
   }
+
+  a {
+    height: 38px;
+    width: 100%;
+    border-radius: 4px;
+    padding: 6px 22px;
+    background-color: var(--Grey-1);
+    border: solid 1px var(--Grey-1);
+    color: var(--Grey-0);
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  p {
+    color: var(--Negative);
+    position: relative;
+    bottom: 15px;
+    font-family: var(--Inter);
+    font-size: 12px;
+    font-weight: 400;
+    text-align: start;
+  }
 `;
 
 export const Span = styled.span`
@@ -48,16 +70,4 @@ export const Headers = styled.header`
   align-items: center;
   justify-content: center;
   margin-bottom: 31px;
-`;
-
-export const BtnRegister = styled.a`
-  height: 38px;
-  width: 100%;
-  border-radius: 4px;
-  padding: 0px 22px;
-  background-color: var(--Grey-1);
-  border: solid 1px var(--Grey-1);
-  color: var(--Grey-0);
-  cursor: pointer;
-  text-decoration: none;
 `;
