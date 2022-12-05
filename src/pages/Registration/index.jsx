@@ -5,16 +5,50 @@ import { Inputs } from "../../components/Input";
 import { Button } from "../../components/Button";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { registerSchema } from "./registerSchema";
+import { api } from "../../services/api";
+import { toast } from "react-toastify";
+import { useState } from "react";
 
 export const Registration = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+    reset,
+  } = useForm({
+    resolver: yupResolver(registerSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+      name: "",
+      bio: "",
+      contact: "",
+      course_module: "",
+    },
+    mode: "onBlur",
+  });
 
-  const submit = (data) => {
+  const [Disabled, setDisabled] = useState(false);
+
+  const userRegister = async (formData) => {
+    try {
+      const response = await api.post("/users", formData);
+      toast.success("Cadastro realizado com sucesso");
+      console.log(response);
+      setDisabled(true);
+    } catch (error) {
+      toast.error("Email ja existente");
+    } finally {
+      setDisabled(false);
+    }
+  };
+
+  const submit = async (data) => {
+    await userRegister(data);
     console.log(data);
+    reset();
   };
 
   return (
@@ -23,7 +57,7 @@ export const Registration = () => {
         <img src={Logo} alt="Logo" />
         <Link to={"/"}>Voltar</Link>
       </Headers>
-      <form onSubmit={handleSubmit(submit)}>
+      <form onSubmit={handleSubmit(submit)} noValidate>
         <H1>Crie sua conta</H1>
         <Span>Rapido e grátis, vamos nessa</Span>
         <Inputs
@@ -33,6 +67,7 @@ export const Registration = () => {
           type={`text`}
           register={register("name")}
         />
+        {errors.name?.message && <p>{errors.name.message}</p>}
         <Inputs
           id={`Email`}
           placeholder={`Digite aqui seu email`}
@@ -40,6 +75,7 @@ export const Registration = () => {
           type={`email`}
           register={register("email")}
         />
+        {errors.email?.message && <p>{errors.email.message}</p>}
         <Inputs
           id={`Senha`}
           placeholder={`Digite aqui sua senha`}
@@ -47,6 +83,7 @@ export const Registration = () => {
           type={`password`}
           register={register("password")}
         />
+        {errors.password?.message && <p>{errors.password.message}</p>}
         <Inputs
           id={`Confirmar Senha`}
           placeholder={`Digite novamente sua senha`}
@@ -54,6 +91,7 @@ export const Registration = () => {
           type={`password`}
           register={register("password")}
         />
+        {errors.password?.message && <p>{errors.password.message}</p>}
         <Inputs
           id={`Bio`}
           placeholder={`Fale sobre você`}
@@ -61,13 +99,15 @@ export const Registration = () => {
           type={`text`}
           register={register("bio")}
         />
+        {errors.bio?.message && <p>{errors.bio.message}</p>}
         <Inputs
           id={`Contato`}
           placeholder={`Opção de contato`}
           label={`Contato`}
-          type={`number`}
+          type={`text`}
           register={register("contact")}
         />
+        {errors.contact?.message && <p>{errors.contact.message}</p>}
         <label id="Selecionar módulo">Selecionar módulo</label>
         <select {...register("course_module")} id="Selecionar módulo">
           <option>Primeiro Módulo (Introdução ao Frontend)</option>
@@ -75,7 +115,8 @@ export const Registration = () => {
           <option>Terceiro módulo (Introdução ao Backend)</option>
           <option>Quarto módulo (Backend Avançado)</option>
         </select>
-        <Button Name={"Cadastrar"} />
+        {errors.course_module?.message && <p>{errors.course_module.message}</p>}
+        <Button disabled={Disabled} Name={"Cadastrar"} />
       </form>
     </Main>
   );

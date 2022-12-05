@@ -1,10 +1,12 @@
 import React from "react";
 import { Buttons } from "./styles";
 
-export const Button = ({ Name }) => {
+export const Button = ({ Name, disabled }) => {
   return (
     <>
-      <Buttons Name={Name}>{Name}</Buttons>
+      <Buttons disabled={disabled} Name={Name}>
+        {Name}
+      </Buttons>
     </>
   );
 };

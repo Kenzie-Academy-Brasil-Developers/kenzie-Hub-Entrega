@@ -38,6 +38,16 @@ export const Main = styled.main`
       font-weight: 400;
       margin-bottom: 15px;
     }
+
+    p {
+      color: var(--Negative);
+      position: relative;
+      bottom: 15px;
+      font-family: var(--Inter);
+      font-size: 12px;
+      font-weight: 400;
+      text-align: start;
+    }
   }
 `;
 
