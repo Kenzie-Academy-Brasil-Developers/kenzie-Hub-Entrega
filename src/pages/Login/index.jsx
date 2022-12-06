@@ -10,7 +10,7 @@ import { loginSchema } from "./loginSchema/loginSchema";
 import { toast } from "react-toastify";
 import { api } from "../../services/api";
 
-export const Login = () => {
+export const Login = ({ setUser }) => {
   const {
     register,
     handleSubmit,
@@ -26,7 +26,7 @@ export const Login = () => {
     try {
       const response = await api.post("/sessions", formData);
       localStorage.setItem("@token", JSON.stringify(response.data.token));
-      localStorage.setItem("@id", JSON.stringify(response.data.user.id));
+      setUser(response.data.user);
       toast.success("Login realizado com sucesso");
       setTimeout(() => {
         navigate("/dashboard");

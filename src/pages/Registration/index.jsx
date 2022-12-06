@@ -64,50 +64,50 @@ export const Registration = () => {
         <H1>Crie sua conta</H1>
         <Span>Rapido e grátis, vamos nessa</Span>
         <Inputs
-          id={`Nome`}
-          placeholder={`Digite aqui seu nome`}
-          label={`Nome`}
-          type={`text`}
+          id={"Nome"}
+          placeholder={"Digite aqui seu nome"}
+          label={"Nome"}
+          type={"text"}
           register={register("name")}
         />
         {errors.name?.message && <p>{errors.name.message}</p>}
         <Inputs
-          id={`Email`}
-          placeholder={`Digite aqui seu email`}
-          label={`Email`}
-          type={`email`}
+          id={"Email"}
+          placeholder={"Digite aqui seu email"}
+          label={"Email"}
+          type={"email"}
           register={register("email")}
         />
         {errors.email?.message && <p>{errors.email.message}</p>}
         <Inputs
-          id={`Senha`}
-          placeholder={`Digite aqui sua senha`}
-          label={`Senha`}
-          type={`password`}
+          id={"Senha"}
+          placeholder={"Digite aqui sua senha"}
+          label={"Senha"}
+          type={"password"}
           register={register("password")}
         />
         {errors.password?.message && <p>{errors.password.message}</p>}
         <Inputs
-          id={`Confirmar Senha`}
-          placeholder={`Digite novamente sua senha`}
-          label={`Confirmar Senha`}
-          type={`password`}
+          id={"Confirmar Senha"}
+          placeholder={"Digite novamente sua senha"}
+          label={"Confirmar Senha"}
+          type={"password"}
           register={register("password")}
         />
         {errors.password?.message && <p>{errors.password.message}</p>}
         <Inputs
-          id={`Bio`}
-          placeholder={`Fale sobre você`}
-          label={`Bio`}
-          type={`text`}
+          id={"Bio"}
+          placeholder={"Fale sobre você"}
+          label={"Bio"}
+          type={"text"}
           register={register("bio")}
         />
         {errors.bio?.message && <p>{errors.bio.message}</p>}
         <Inputs
-          id={`Contato`}
-          placeholder={`Opção de contato`}
-          label={`Contato`}
-          type={`text`}
+          id={"Contato"}
+          placeholder={"Opção de contato"}
+          label={"Contato"}
+          type={"text"}
           register={register("contact")}
         />
         {errors.contact?.message && <p>{errors.contact.message}</p>}
