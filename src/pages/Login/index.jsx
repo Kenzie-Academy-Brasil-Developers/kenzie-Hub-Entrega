@@ -3,14 +3,15 @@ import { H1, Headers, Main, Span } from "./styles";
 import Logo from "../../assets/Logo.png";
 import { Inputs } from "../../components/Input";
 import { Button } from "../../components/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "./loginSchema/loginSchema";
-import { toast } from "react-toastify";
-import { api } from "../../services/api";
+import { useContext } from "react";
+import { UserContext } from "../../UserContext/UserContext";
 
-export const Login = ({ setUser }) => {
+export const Login = () => {
+  const { userLogin } = useContext(UserContext);
   const {
     register,
     handleSubmit,
@@ -20,24 +21,8 @@ export const Login = ({ setUser }) => {
     mode: "onBlur",
   });
 
-  const navigate = useNavigate();
-
-  const Login = async (formData) => {
-    try {
-      const response = await api.post("/sessions", formData);
-      localStorage.setItem("@token", JSON.stringify(response.data.token));
-      setUser(response.data.user);
-      toast.success("Login realizado com sucesso");
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 4000);
-    } catch (error) {
-      toast.error("Email ou Senha invalido");
-    }
-  };
-
   const submit = async (data) => {
-    await Login(data);
+    await userLogin(data);
   };
 
   return (

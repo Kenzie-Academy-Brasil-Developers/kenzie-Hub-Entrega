@@ -3,15 +3,15 @@ import { H1, Headers, Main, Span } from "./styles";
 import Logo from "../../assets/Logo.png";
 import { Inputs } from "../../components/Input";
 import { Button } from "../../components/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "./registerSchema/registerSchema";
-import { api } from "../../services/api";
-import { toast } from "react-toastify";
-import { useState } from "react";
+import { useContext } from "react";
+import { UserContext } from "../../UserContext/UserContext";
 
 export const Registration = () => {
+  const { Disabled, userRegister } = useContext(UserContext);
   const {
     register,
     handleSubmit,
@@ -29,25 +29,6 @@ export const Registration = () => {
     },
     mode: "onBlur",
   });
-
-  const [Disabled, setDisabled] = useState(false);
-  const navigate = useNavigate();
-
-  const userRegister = async (formData) => {
-    try {
-      setDisabled(true);
-      await api.post("/users", formData);
-      toast.success("Cadastro realizado com sucesso");
-
-      setTimeout(() => {
-        navigate("/");
-      }, 4000);
-    } catch (error) {
-      toast.error("Email ja existente");
-    } finally {
-      setDisabled(false);
-    }
-  };
 
   const submit = async (data) => {
     await userRegister(data);
